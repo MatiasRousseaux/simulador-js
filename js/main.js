@@ -1,27 +1,39 @@
 let edadObligatoria = 18;
-let edadNoPermitida= 17;
+let edadNoPermitida = 17;
+let usuario = "Matias";
+let pass = "1234";
 
-let edadUsuario = parseInt (prompt ("¿Eres mayor de edad?"));
+let edadUsuario = parseInt(prompt("¿Eres mayor de edad?"));
 
-if(edadUsuario >= 18){
+if (edadUsuario >= 18) {
     alert("Bienvenidos a La Boutique");
-} else(edadUsuario <18); {
-    alert("Esta prohibido el consumo de alcohol para menores de 18 años");
+} else {
+    alert("Está prohibido el consumo de alcohol para menores de 18 años");
 }
 
-
-let usuario = "Matias"
-let pass = "1234"
-
-let ingresouser = prompt ("Ingresa tu usuario");
-let ingresopass = prompt ("Ingresa tu password");
+let ingresouser = prompt("Ingresa tu usuario");
+let ingresopass = prompt("Ingresa tu contraseña");
 let check = "Buenos Aires";
-let checkIngreso = prompt("¿Cual es la Capital de Argentina?");
-let credenciales = ingresouser == usuario && ingresopass == pass;
+let checkIngreso = prompt("¿Cuál es la capital de Argentina?");
+let credenciales = ingresouser === usuario && ingresopass === pass;
 
-if(credenciales && checkIngreso == check)
-{ 
-    alert ("Bienvenidos"+ " " + usuario);
-} else {
-    alert ("Usuario incorrecto. Por favor, intente de nuevo");
+let intentos = 3;
+let acceso = false;
+
+for (let i = 0; i < intentos; i++) {
+    if (credenciales && checkIngreso === check) {
+        acceso = true;
+        alert("Bienvenido " + usuario);
+        break; // Exit the loop if credentials are correct
+    } else {
+        alert("Credenciales incorrectas. Por favor, inténtalo de nuevo. Tienes " + (intentos - i - 1) + " intentos");
+        ingresouser = prompt("Ingresa tu usuario");
+        ingresopass = prompt("Ingresa tu contraseña");
+        checkIngreso = prompt("¿Cuál es la capital de Argentina?");
+        credenciales = ingresouser === usuario && ingresopass === pass;
+    }
+}
+
+if (!acceso) {
+    alert("Acceso denegado. Has agotado todos los intentos.");
 }
